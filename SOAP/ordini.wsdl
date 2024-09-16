@@ -1,0 +1,61 @@
+<definitions name="ordiniService"
+    targetNamespace="http://www.esempi.com/ordini"
+    xmlns:tns="http://www.esempi.com/ordini"
+    xmlns:soap="http://schemas.xmlsoap.com/wsdl/soap/"
+    xmlns:xsd="http://www.w3.com/2001/XMLSchema"
+    xmlns="http://schemas.xmlsoap.com/wsdl/">
+
+    <types>
+        <xsd:schema targetNamespace="http://www.esempi.com/ordini">
+            <xsd:element name="CreaRichiestaOrdine">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="nomeCliente" type="xsd:string"/>
+                        <xsd:element name="prodotto" type="xsd:string"/>
+                        <xsd:element name="quantita" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CreaRispostaOrdine">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="idOrdine" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="CreaRichiestaOrdine">
+        <part name="parametri" element="tns:CreaRichiestaOrdine"/>
+    </message>
+    <message name="CreaRispostaOrdine">
+        <part name="parametri" element="tns:CreaRispostaOrdine"/>
+    </message>
+
+    <portType name="ordiniServicePortType">
+        <operation name="CreaOrdine">
+            <input message="tns:CreaRichiestaOrdine"/>
+            <output message="tns:CreaRispostaOrdine"/>
+        </operation>
+    </portType>
+
+    <binding name="ordiniServiceBinding" type="tns:ordiniServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.com/soap/http"/>
+        <operation name="CreaOrdine">
+            <soap:operation soapAction="http://www.esempi.com/ordini/CreaOrdine"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="ordiniService">
+        <port name="ordiniServicePort" binding="tns:ordiniServiceBinding">
+            <soap:address location="http://localhost:8000/ordiniService"/>
+        </port>
+    </service>
+</definitions>

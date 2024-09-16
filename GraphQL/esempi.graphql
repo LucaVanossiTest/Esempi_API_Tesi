@@ -1,0 +1,36 @@
+query {
+    libri {
+      id
+      titolo
+      autore {
+        nome
+      }
+    }
+}
+
+query {
+  autore(id: 1) {
+    nome
+    libri {
+      titolo
+    }
+  }
+}
+
+mutation {
+  addAutore(nome: "Dan Brown") {
+    id
+    nome
+  }
+}
+
+mutation {
+  addBook(titolo: "Il Codice da Vinci", autoreId: 4) {
+    id
+    titolo
+    autore {
+      nome
+    }
+  }
+}
+  

@@ -1,0 +1,20 @@
+<!-- Richiesta per creare un ordine -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ord="http://www.esempi.com/ordini">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ord:CreaRichiestaOrdine>
+         <nomeCliente>Mario Rossi</nomeCliente>
+         <prodotto>Televisori</prodotto>
+         <quantita>2</quantita>
+      </ord:CreaRichiestaOrdine>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- Risposta per l'ordine richiesto -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <CreaRispostaOrdine xmlns="http://www.esempi.com/ordini">
+         <idOrdine>1</idOrdine>
+      </CreaRispostaOrdine>
+   </soapenv:Body>
+</soapenv:Envelope>
